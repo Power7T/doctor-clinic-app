@@ -276,14 +276,14 @@
 <label class="font-label-md text-label-md text-on-surface">Vitals Status</label>
 <div class="flex flex-wrap gap-3">
 <!-- Active state pill -->
-<button class="px-5 py-2 rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2" type="button">
+<button class="vitals-pill px-5 py-2 rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2" type="button" data-active="true">
 <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Stable
                                         </button>
 <!-- Inactive pills -->
-<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" type="button">
+<button class="vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" type="button" data-active="false">
                                             Elevated BP
                                         </button>
-<button class="px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-all" type="button">
+<button class="vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-all" type="button" data-active="false">
                                             Fever
                                         </button>
 </div>
@@ -406,4 +406,52 @@
         /* Safe area padding for mobile bottom nav on newer devices */
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
     </style>
+<script>
+    // Prevent form from reloading
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.print();
+        });
+    }
+
+    // Pill toggling
+    document.querySelectorAll('.vitals-pill').forEach(pill => {
+        pill.addEventListener('click', function() {
+            const isActive = this.getAttribute('data-active') === 'true';
+            if (isActive) {
+                this.setAttribute('data-active', 'false');
+                this.className = "vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all";
+                const icon = this.querySelector('.material-symbols-outlined');
+                if (icon) icon.remove();
+            } else {
+                this.setAttribute('data-active', 'true');
+                this.className = "vitals-pill px-5 py-2 rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2";
+                if (!this.querySelector('.material-symbols-outlined')) {
+                    this.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> ' + this.innerHTML.trim();
+                }
+            }
+        });
+    });
+
+    // Sidebar links (prevent jump to top)
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert("This is just a prototype link for " + this.innerText.trim());
+        });
+    });
+    
+    // Add Standard Protocol button
+    const addProtocolBtn = document.querySelector('button.text-primary.font-label-md');
+    if (addProtocolBtn && addProtocolBtn.innerText.includes("Add Standard Protocol")) {
+        addProtocolBtn.addEventListener('click', function() {
+            const textarea = document.querySelector('textarea[placeholder*="Amoxicillin"]');
+            if (textarea) {
+                textarea.value = (textarea.value + "\n3. Standard Vitamin C, 1000mg PO QD").trim();
+            }
+        });
+    }
+</script>
 </body></html>
