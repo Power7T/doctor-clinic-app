@@ -437,7 +437,7 @@
             const parts = line.split(' PO ');
             const medName = parts[0] ? parts[0].trim() : line;
             // Fake some realistic mock data for reprint layout demo
-            const dosage = parts[1] ? (parts[1].includes('Daily') ? '1-0-0' : (parts[1].includes('BID') ? '1-0-1' : '1-1-1')) : 'x.. 0...x';
+            const dosage = parts[1] ? (parts[1].includes('Daily') ? '1-0-0' : (parts[1].includes('BID') ? '1-0-1' : '1-1-1')) : '1-0-1';
             const remark = parts[1] ? parts[1].trim() : 'after meal';
             
             tr.innerHTML = `
