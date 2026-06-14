@@ -305,8 +305,9 @@
 <!-- Column Headers -->
 <div class="flex items-center gap-3 w-full px-1 border-b border-outline-variant/50 pb-2">
     <span class="w-6 text-right font-bold text-on-surface-variant text-xs">#</span>
-    <span class="flex-1 font-bold text-on-surface-variant text-xs">Medicine Name & Strength</span>
-    <span class="w-1/3 font-bold text-on-surface-variant text-xs">Dosage / Frequency</span>
+    <span class="flex-1 font-bold text-on-surface-variant text-xs">Medicine Name</span>
+    <span class="w-1/4 font-bold text-on-surface-variant text-xs">Dosage</span>
+    <span class="w-1/4 font-bold text-on-surface-variant text-xs">Remark</span>
     <span class="w-8"></span>
 </div>
 
@@ -315,21 +316,24 @@
     <div class="flex items-start gap-3 w-full med-row">
         <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">1)</span>
         <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. Paracetamol -10" type="text" value="Paracetamol -10"/>
-        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. x.. 0...x" type="text" value="x.. 0...x"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. x.. 0...x" type="text" value="x.. 0...x"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary text-sm" placeholder="e.g. after meal" type="text" value="after meal"/>
         <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
     </div>
     <!-- Row 2 -->
     <div class="flex items-start gap-3 w-full med-row">
         <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">2)</span>
         <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. citrazen-15" type="text" value="citrazen-15"/>
-        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X...x...x" type="text" value="X...x...x"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X...x...x" type="text" value="X...x...x"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary text-sm" placeholder="e.g. at night" type="text" value="at night"/>
         <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
     </div>
     <!-- Row 3 -->
     <div class="flex items-start gap-3 w-full med-row">
         <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">3)</span>
         <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. rantac-10" type="text" value="rantac-10"/>
-        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X....x (before meal)" type="text" value="X....x (before meal)"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X....x" type="text" value="X....x"/>
+        <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary text-sm" placeholder="e.g. before meal" type="text" value="before meal"/>
         <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
     </div>
 </div>
@@ -502,7 +506,8 @@
         row.innerHTML = `
             <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">${count})</span>
             <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="Medicine Name" type="text" />
-            <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="Dosage" type="text" />
+            <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="Dosage" type="text" />
+            <input class="w-1/4 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary text-sm" placeholder="Remark" type="text" />
             <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
         `;
         container.appendChild(row);
