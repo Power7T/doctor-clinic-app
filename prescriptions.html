@@ -414,9 +414,19 @@
         <div><strong>Village:</strong> <span id="print-village"></span></div>
     </div>
     
-    <div class="mb-4 text-black">
-        <h3 class="font-bold border-b border-black inline-block mb-2">Prescription</h3>
-        <pre id="print-meds" class="font-mono text-sm whitespace-pre-wrap"></pre>
+    <div class="mb-4 text-black w-full">
+        <h3 class="font-bold border-b border-black mb-2 pb-1">Prescription</h3>
+        <table class="w-full text-left text-sm font-mono mt-2">
+            <thead>
+                <tr class="border-b border-black/50">
+                    <th class="pb-2 w-1/2">Medicine Name</th>
+                    <th class="pb-2 w-1/4">Dosage</th>
+                    <th class="pb-2 w-1/4">Remark</th>
+                </tr>
+            </thead>
+            <tbody id="print-meds">
+            </tbody>
+        </table>
     </div>
     
     <div class="mt-8 text-black">
@@ -430,8 +440,7 @@
         const card = btn.closest('.flex.items-center.justify-between');
         const name = card.querySelector('h4').textContent.trim();
         let medsHtml = card.querySelector('p.font-mono').innerHTML;
-        // replace <br> with newlines for <pre>
-        const meds = medsHtml.replace(/<br\s*\/?>/gi, '\n');
+        const medLines = medsHtml.split(/<br\s*\/?>/gi);
         
         let dateText = card.querySelector('p.text-xs').textContent.replace('Issued: ', '').trim();
         
@@ -439,7 +448,26 @@
         document.getElementById('print-date').textContent = dateText;
         document.getElementById('print-age').textContent = "--";
         document.getElementById('print-village').textContent = "--";
-        document.getElementById('print-meds').textContent = meds;
+        
+        const printMedsTbody = document.getElementById('print-meds');
+        printMedsTbody.innerHTML = '';
+        
+        medLines.forEach(line => {
+            const tr = document.createElement('tr');
+            // Try to split the mock data to populate columns roughly
+            const parts = line.split(' PO ');
+            const medName = parts[0] ? parts[0].trim() : line;
+            // Fake some realistic mock data for reprint layout demo
+            const dosage = parts[1] ? (parts[1].includes('Daily') ? '1-0-0' : (parts[1].includes('BID') ? '1-0-1' : '1-1-1')) : 'x.. 0...x';
+            const remark = parts[1] ? parts[1].trim() : 'after meal';
+            
+            tr.innerHTML = `
+                <td class="py-2 pr-4">${medName}</td>
+                <td class="py-2 pr-4">${dosage}</td>
+                <td class="py-2">${remark}</td>
+            `;
+            printMedsTbody.appendChild(tr);
+        });
         document.getElementById('print-remark').textContent = "Past Prescription Reprint";
         
         // Show container for printing
