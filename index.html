@@ -294,14 +294,45 @@
 </h3>
 </div>
 <div class="flex flex-col gap-6">
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Medications & Dosage</label>
-<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-[15px]" placeholder="1) Paracetamol -10
-x.. 0...x
-2) citrazen-15
-X...x...x
-3) rantac-10
-X....x (before meal)" rows="8"></textarea>
+<div class="flex flex-col gap-3 w-full">
+<div class="flex items-center justify-between">
+    <label class="font-label-md text-label-md text-on-surface-variant">Medications & Dosage</label>
+    <button type="button" onclick="addMedicationRow()" class="text-primary font-bold text-sm flex items-center gap-1 hover:underline">
+        <span class="material-symbols-outlined" style="font-size:16px;">add</span> Add Medicine
+    </button>
+</div>
+
+<!-- Column Headers -->
+<div class="flex items-center gap-3 w-full px-1 border-b border-outline-variant/50 pb-2">
+    <span class="w-6 text-right font-bold text-on-surface-variant text-xs">#</span>
+    <span class="flex-1 font-bold text-on-surface-variant text-xs">Medicine Name & Strength</span>
+    <span class="w-1/3 font-bold text-on-surface-variant text-xs">Dosage / Frequency</span>
+    <span class="w-8"></span>
+</div>
+
+<div id="medications-container" class="flex flex-col gap-3 w-full">
+    <!-- Row 1 -->
+    <div class="flex items-start gap-3 w-full med-row">
+        <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">1)</span>
+        <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. Paracetamol -10" type="text" value="Paracetamol -10"/>
+        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. x.. 0...x" type="text" value="x.. 0...x"/>
+        <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
+    </div>
+    <!-- Row 2 -->
+    <div class="flex items-start gap-3 w-full med-row">
+        <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">2)</span>
+        <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. citrazen-15" type="text" value="citrazen-15"/>
+        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X...x...x" type="text" value="X...x...x"/>
+        <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
+    </div>
+    <!-- Row 3 -->
+    <div class="flex items-start gap-3 w-full med-row">
+        <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">3)</span>
+        <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="e.g. rantac-10" type="text" value="rantac-10"/>
+        <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="e.g. X....x (before meal)" type="text" value="X....x (before meal)"/>
+        <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
+    </div>
+</div>
 </div>
 <div class="flex flex-col gap-2 mt-4">
 <label class="font-label-md text-label-md text-on-surface-variant">Remark</label>
@@ -449,6 +480,35 @@ X....x (before meal)" rows="8"></textarea>
                 textarea.value = (textarea.value + "\n3. Standard Vitamin C, 1000mg PO QD").trim();
             }
         });
+    }
+
+    // Dynamic Medication Rows
+    function updateMedNumbers() {
+        document.querySelectorAll('.med-number').forEach((span, index) => {
+            span.textContent = (index + 1) + ')';
+        });
+    }
+
+    function removeMedicationRow(btn) {
+        btn.closest('.med-row').remove();
+        updateMedNumbers();
+    }
+
+    function addMedicationRow() {
+        const container = document.getElementById('medications-container');
+        const count = container.querySelectorAll('.med-row').length + 1;
+        const row = document.createElement('div');
+        row.className = 'flex items-start gap-3 w-full med-row';
+        row.innerHTML = `
+            <span class="font-bold text-on-surface w-6 text-right mt-3 med-number">${count})</span>
+            <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary" placeholder="Medicine Name" type="text" />
+            <input class="w-1/3 bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:outline-none focus:border-primary font-mono" placeholder="Dosage" type="text" />
+            <button type="button" onclick="removeMedicationRow(this)" class="text-error hover:bg-error-container hover:text-on-error-container rounded p-1 mt-1 w-8 flex justify-center transition-colors"><span class="material-symbols-outlined" style="font-size:20px">close</span></button>
+        `;
+        container.appendChild(row);
+        
+        // Focus the new row's first input
+        row.querySelector('input').focus();
     }
 
     // Automatically set active navigation tab
