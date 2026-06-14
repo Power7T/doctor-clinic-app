@@ -207,7 +207,49 @@
 </div>
 </nav>
 <!-- Main Content Area -->
-<main class="w-full md:ml-[280px] p-4 md:p-8 flex flex-col items-center justify-center min-h-[50vh]"><h1 class="text-4xl text-primary mb-4">Patients</h1><p class="text-on-surface-variant text-lg">This page is active and ready to be built out.</p></main>
+<main class="w-full md:ml-[280px] p-4 md:p-8 flex flex-col gap-8">
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface">Patient Directory</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage and view all registered patients.</p>
+        </div>
+        <a href="index.html" class="px-5 py-2 bg-primary text-on-primary rounded-lg font-bold flex items-center gap-2 hover:bg-surface-tint">
+            <span class="material-symbols-outlined text-sm">add</span> New Patient
+        </a>
+    </div>
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-surface-container-low border-b border-outline-variant text-on-surface-variant">
+                    <th class="p-4 font-label-md uppercase tracking-wider">Patient Name</th>
+                    <th class="p-4 font-label-md uppercase tracking-wider">Date of Birth</th>
+                    <th class="p-4 font-label-md uppercase tracking-wider">Last Visit</th>
+                    <th class="p-4 font-label-md uppercase tracking-wider">Status</th>
+                </tr>
+            </thead>
+            <tbody class="text-on-surface">
+                <tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
+                    <td class="p-4 font-bold">Sarah Jenkins</td>
+                    <td class="p-4 text-on-surface-variant">1982-05-14</td>
+                    <td class="p-4 text-on-surface-variant">Today</td>
+                    <td class="p-4"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-xs font-bold uppercase">Stable</span></td>
+                </tr>
+                <tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
+                    <td class="p-4 font-bold">Michael Chen</td>
+                    <td class="p-4 text-on-surface-variant">1975-11-02</td>
+                    <td class="p-4 text-on-surface-variant">Yesterday</td>
+                    <td class="p-4"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-xs font-bold uppercase">Stable</span></td>
+                </tr>
+                <tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors">
+                    <td class="p-4 font-bold">Elena Rodriguez</td>
+                    <td class="p-4 text-on-surface-variant">1990-08-22</td>
+                    <td class="p-4 text-on-surface-variant">Oct 12, 2024</td>
+                    <td class="p-4"><span class="bg-error-container text-on-error-container px-2 py-1 rounded text-xs font-bold uppercase">Follow-up</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 </div>
 <!-- Footer -->
 <footer class="bg-surface-container-lowest text-primary font-body-sm text-body-sm relative w-full md:ml-[280px] md:w-[calc(100%-280px)] border-t border-outline-variant flat no shadows flex flex-col md:flex-row justify-between items-center py-4 px-margin-desktop mt-auto gap-4 md:gap-0 z-10">

@@ -207,7 +207,56 @@
 </div>
 </nav>
 <!-- Main Content Area -->
-<main class="w-full md:ml-[280px] p-4 md:p-8 flex flex-col items-center justify-center min-h-[50vh]"><h1 class="text-4xl text-primary mb-4">Dashboard</h1><p class="text-on-surface-variant text-lg">This page is active and ready to be built out.</p></main>
+<main class="w-full md:ml-[280px] p-4 md:p-8 flex flex-col gap-8">
+    <div class="mb-6">
+        <h2 class="font-headline-lg text-headline-lg text-on-surface">Clinic Dashboard</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Overview of today's clinical activity.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-primary">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-sm font-bold bg-primary-container text-on-primary-container px-2 rounded-full">+12%</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-on-surface">24</h3>
+            <p class="font-label-md text-on-surface-variant uppercase tracking-wider">Patients Today</p>
+        </div>
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-primary">
+                <span class="material-symbols-outlined">prescriptions</span>
+                <span class="text-sm font-bold bg-primary-container text-on-primary-container px-2 rounded-full">+5%</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-on-surface">18</h3>
+            <p class="font-label-md text-on-surface-variant uppercase tracking-wider">Prescriptions Issued</p>
+        </div>
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm flex flex-col gap-2">
+            <div class="flex justify-between items-center text-error">
+                <span class="material-symbols-outlined">warning</span>
+            </div>
+            <h3 class="text-4xl font-extrabold text-on-surface">2</h3>
+            <p class="font-label-md text-on-surface-variant uppercase tracking-wider">Urgent Follow-ups</p>
+        </div>
+    </div>
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm mt-4 p-6">
+        <h3 class="font-title-lg text-title-lg text-on-surface mb-4">Recent Activity</h3>
+        <div class="flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+                <div>
+                    <p class="font-bold text-on-surface">Sarah Jenkins</p>
+                    <p class="text-sm text-on-surface-variant">Prescribed Lisinopril 10mg</p>
+                </div>
+                <span class="text-sm text-outline">10:42 AM</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+                <div>
+                    <p class="font-bold text-on-surface">Michael Chen</p>
+                    <p class="text-sm text-on-surface-variant">Vitals checked, stable</p>
+                </div>
+                <span class="text-sm text-outline">09:15 AM</span>
+            </div>
+        </div>
+    </div>
+</main>
 </div>
 <!-- Footer -->
 <footer class="bg-surface-container-lowest text-primary font-body-sm text-body-sm relative w-full md:ml-[280px] md:w-[calc(100%-280px)] border-t border-outline-variant flat no shadows flex flex-col md:flex-row justify-between items-center py-4 px-margin-desktop mt-auto gap-4 md:gap-0 z-10">
