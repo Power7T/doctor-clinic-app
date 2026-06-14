@@ -11,6 +11,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Theme Configuration -->
 <style>
+    
     @media print {
         body * {
             visibility: hidden;
@@ -23,11 +24,40 @@
             left: 0;
             top: 0;
             width: 100%;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: white !important;
         }
+        #print-header {
+            display: block !important;
+        }
+        /* Make inputs and textareas look like plain text on paper */
+        input, select, textarea {
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            resize: none !important;
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            color: black !important;
+        }
+        /* Hide placeholders during printing */
+        ::-webkit-input-placeholder { color: transparent !important; }
+        :-moz-placeholder { color: transparent !important; }
+        ::-moz-placeholder { color: transparent !important; }
+        :-ms-input-placeholder { color: transparent !important; }
+        
         button {
             display: none !important;
         }
+        /* Hide sidebar/navbar completely to save space */
+        nav, header, aside {
+            display: none !important;
+        }
     }
+
 </style>
 <script id="tailwind-config">
         tailwind.config = {
@@ -216,6 +246,13 @@
 </div>
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
 <form class="p-6 md:p-8 flex flex-col gap-10">
+
+<div id="print-header" class="hidden text-center mb-8 pb-4 border-b-2 border-black">
+    <h1 class="text-3xl font-bold">[Doctor Name Here]</h1>
+    <p class="text-sm mt-1">MBBS, MD - General Medicine</p>
+    <p class="text-sm">Clinic Address, City, Phone: XXXXXXXXXX</p>
+</div>
+
 <!-- Section: Patient Details -->
 <section>
 <div class="border-b border-outline-variant/60 pb-3 mb-6">
@@ -225,60 +262,27 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="flex flex-col gap-2 md:col-span-2">
-<label class="font-label-md text-label-md text-on-surface">Patient Full Name</label>
-<input class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="e.g., John Doe" type="text"/>
-</div>
-<div class="flex flex-col gap-2 md:col-span-2">
-<label class="font-label-md text-label-md text-on-surface">Residential Address</label>
-<input class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Street address, City, ZIP" type="text"/>
+<label class="font-label-md text-label-md text-on-surface">Name</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="e.g., Chandan Gosavi" type="text"/>
 </div>
 <div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface">Date of Birth</label>
+<label class="font-label-md text-label-md text-on-surface">Date</label>
 <input class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" type="date"/>
 </div>
 <div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface">Blood Type</label>
+<label class="font-label-md text-label-md text-on-surface">Age</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="e.g., 28" type="number"/>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface">Village</label>
 <select class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none">
-<option disabled="" selected="" value="">Select type</option>
-<option value="A+">A+</option>
-<option value="A-">A-</option>
-<option value="B+">B+</option>
-<option value="B-">B-</option>
-<option value="O+">O+</option>
-<option value="O-">O-</option>
-<option value="AB+">AB+</option>
-<option value="AB-">AB-</option>
+<option value="" disabled selected>Select Village</option>
+<option value="chaul">Chaul</option>
+<option value="kurul">Kurul</option>
+<option value="mandava">Mandava</option>
+<option value="pen">Pen</option>
+<option value="other">Other</option>
 </select>
-</div>
-</div>
-</section>
-<!-- Section: Clinical Notes -->
-<section>
-<div class="border-b border-outline-variant/60 pb-3 mb-6">
-<h3 class="font-title-lg text-title-lg text-primary flex items-center gap-2">
-<span class="material-symbols-outlined">clinical_notes</span> Clinical Notes
-                                </h3>
-</div>
-<div class="flex flex-col gap-6">
-<div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface">Primary Diagnosis</label>
-<textarea class="w-full bg-surface-bright border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y" placeholder="Describe clinical findings and diagnosis..." rows="4"></textarea>
-</div>
-<div class="flex flex-col gap-3">
-<label class="font-label-md text-label-md text-on-surface">Vitals Status</label>
-<div class="flex flex-wrap gap-3">
-<!-- Active state pill -->
-<button class="vitals-pill px-5 py-2 rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2" type="button" data-active="true">
-<span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> Stable
-                                        </button>
-<!-- Inactive pills -->
-<button class="vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" type="button" data-active="false">
-                                            Elevated BP
-                                        </button>
-<button class="vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-all" type="button" data-active="false">
-                                            Fever
-                                        </button>
-</div>
 </div>
 </div>
 </section>
@@ -287,19 +291,22 @@
 <div class="mb-4 flex items-center justify-between">
 <h3 class="font-title-lg text-title-lg text-primary flex items-center gap-2">
 <span class="material-symbols-outlined">prescriptions</span> Prescription
-                                </h3>
-<button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-1" type="button">
-<span class="material-symbols-outlined" style="font-size: 16px;">add</span> Add Standard Protocol
-                                </button>
+</h3>
 </div>
+<div class="flex flex-col gap-6">
 <div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant">Medication Details (Name, Dosage, Frequency)</label>
-<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-[15px]" placeholder="1. Amoxicillin 500mg, 1 cap PO TID x 7 days
-2. Ibuprofen 400mg, 1 tab PO PRN pain" rows="6"></textarea>
+<label class="font-label-md text-label-md text-on-surface-variant">Medications & Dosage</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-[15px]" placeholder="1) Paracetamol -10
+x.. 0...x
+2) citrazen-15
+X...x...x
+3) rantac-10
+X....x (before meal)" rows="8"></textarea>
 </div>
 <div class="flex flex-col gap-2 mt-4">
-<label class="font-label-md text-label-md text-on-surface-variant">How medicine to be taken (Instructions)</label>
-<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-[15px] bg-yellow-50/30" placeholder="e.g., Take after meals with plenty of water." rows="3"></textarea>
+<label class="font-label-md text-label-md text-on-surface-variant">Remark</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono text-[15px] bg-yellow-50/30" placeholder="e.g., follow up after 5days" rows="2"></textarea>
+</div>
 </div>
 </section>
 <!-- Form Actions -->
