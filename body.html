@@ -1,0 +1,162 @@
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col antialiased pb-20 md:pb-0">
+<!-- TopNavBar -->
+<header class="bg-surface text-primary font-body-md text-body-md fixed top-0 left-0 w-full z-50 border-b border-outline-variant flat no shadows flex justify-between items-center h-16 px-margin-desktop w-full">
+<div class="flex items-center gap-6">
+<h1 class="font-title-lg text-title-lg text-primary tracking-tight font-extrabold">MedFlow Clinic</h1>
+
+</div>
+<div class="flex items-center gap-4">
+<!-- Trailing Icons -->
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<!-- Profile -->
+<button class="flex items-center gap-3 active:scale-95 transition-transform hover:bg-surface-container-high p-1 rounded-full pl-3">
+<span class="font-label-md text-label-md text-on-surface hidden md:block">Dr. Julianne Smith</span>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-label-md">
+                    JS
+                </div>
+</button>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-surface-container-low text-primary font-label-md text-label-md fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] z-40 border-r border-outline-variant flat no shadows hidden md:flex flex-col py-gutter px-unit gap-2">
+<div class="px-4 py-6 mb-4 flex items-center gap-4 border-b border-outline-variant/50">
+<div class="w-12 h-12 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined icon-fill">local_hospital</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary leading-tight">Main Hospital</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Surgery Dept</p>
+</div>
+</div>
+<!-- Primary Tabs -->
+<div class="flex-1 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high active:translate-x-1 transition-all" href="dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high active:translate-x-1 transition-all" href="patients.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Patients</span>
+</a>
+<!-- Active Tab: New Entry -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg active:translate-x-1 transition-all" href="index.html">
+<span class="material-symbols-outlined icon-fill" data-icon="person_add">person_add</span>
+<span>New Entry</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high active:translate-x-1 transition-all" href="prescriptions.html">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Prescriptions</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="px-4 py-4">
+<button class="w-full py-3 rounded-lg bg-error text-on-error font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-error-container transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">warning</span>
+                    Emergency Alert
+                </button>
+</div>
+<div class="border-t border-outline-variant/50 mt-auto pt-4 px-2 flex flex-col gap-1 pb-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-size: 18px;">check_circle</span>
+<span>System Status</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help" style="font-size: 18px;">help</span>
+<span>Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="w-full md:ml-[280px] p-4 md:p-8 flex flex-col items-center justify-center min-h-[50vh]"><h1 class="text-4xl text-primary mb-4">Body</h1><p class="text-on-surface-variant text-lg">This page is active and ready to be built out.</p></main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest text-primary font-body-sm text-body-sm relative w-full md:ml-[280px] md:w-[calc(100%-280px)] border-t border-outline-variant flat no shadows flex flex-col md:flex-row justify-between items-center py-4 px-margin-desktop mt-auto gap-4 md:gap-0 z-10">
+<div class="text-on-surface-variant">
+            © 2024 MedFlow Systems. All rights reserved.
+        </div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">HIPAA Compliance</a>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation Pivot (Derived from SideNav JSON) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center px-2 py-3 z-50 pb-safe">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">dashboard</span>
+<span class="text-[10px] font-bold">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">group</span>
+<span class="text-[10px] font-bold">Patients</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary p-2" href="#">
+<div class="bg-secondary-container px-4 py-1 rounded-full mb-1">
+<span class="material-symbols-outlined icon-fill" style="font-size: 24px;">person_add</span>
+</div>
+<span class="text-[10px] font-bold">New Entry</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">medical_services</span>
+<span class="text-[10px] font-bold">Rx</span>
+</a>
+</nav>
+<style>
+        /* Safe area padding for mobile bottom nav on newer devices */
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+<script>
+    // Prevent form from reloading
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.print();
+        });
+    }
+
+    // Pill toggling
+    document.querySelectorAll('.vitals-pill').forEach(pill => {
+        pill.addEventListener('click', function() {
+            const isActive = this.getAttribute('data-active') === 'true';
+            if (isActive) {
+                this.setAttribute('data-active', 'false');
+                this.className = "vitals-pill px-5 py-2 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all";
+                const icon = this.querySelector('.material-symbols-outlined');
+                if (icon) icon.remove();
+            } else {
+                this.setAttribute('data-active', 'true');
+                this.className = "vitals-pill px-5 py-2 rounded-full border border-primary bg-primary-container text-on-primary-container font-label-md text-label-md transition-all flex items-center gap-2";
+                if (!this.querySelector('.material-symbols-outlined')) {
+                    this.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span> ' + this.innerHTML.trim();
+                }
+            }
+        });
+    });
+
+
+    
+    // Add Standard Protocol button
+    const addProtocolBtn = document.querySelector('button.text-primary.font-label-md');
+    if (addProtocolBtn && addProtocolBtn.innerText.includes("Add Standard Protocol")) {
+        addProtocolBtn.addEventListener('click', function() {
+            const textarea = document.querySelector('textarea[placeholder*="Amoxicillin"]');
+            if (textarea) {
+                textarea.value = (textarea.value + "\n3. Standard Vitamin C, 1000mg PO QD").trim();
+            }
+        });
+    }
+</script>
+</body></html>
