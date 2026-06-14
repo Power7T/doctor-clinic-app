@@ -130,7 +130,27 @@
             font-variation-settings: 'FILL' 1;
         }
     </style>
+
+    <style id="reprint-styles">
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #print-container, #print-container * {
+            visibility: visible;
+        }
+        #print-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white !important;
+            padding: 20px;
+        }
+    }
+    </style>
 </head>
+
 <body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col antialiased pb-20 md:pb-0">
 <!-- TopNavBar -->
 <header class="bg-surface text-primary font-body-md text-body-md fixed top-0 left-0 w-full z-50 border-b border-outline-variant flat no shadows flex justify-between items-center h-16 px-margin-desktop w-full">
@@ -219,7 +239,7 @@
                 <p class="text-on-surface-variant font-mono mt-1 text-sm">Lisinopril 10mg PO Daily<br>Metformin 500mg PO BID</p>
                 <p class="text-xs text-outline mt-2">Issued: Today, 10:42 AM</p>
             </div>
-            <button class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
+            <button onclick="doReprint(this)" class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
                 <span class="material-symbols-outlined" style="font-size:16px;">print</span> Reprint
             </button>
         </div>
@@ -229,7 +249,7 @@
                 <p class="text-on-surface-variant font-mono mt-1 text-sm">Azithromycin 250mg Z-Pak<br>Albuterol Inhaler PRN</p>
                 <p class="text-xs text-outline mt-2">Issued: Yesterday, 09:15 AM</p>
             </div>
-            <button class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
+            <button onclick="doReprint(this)" class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
                 <span class="material-symbols-outlined" style="font-size:16px;">print</span> Reprint
             </button>
         </div>
@@ -239,7 +259,7 @@
                 <p class="text-on-surface-variant font-mono mt-1 text-sm">Atorvastatin 20mg PO QHS</p>
                 <p class="text-xs text-outline mt-2">Issued: Oct 12, 2024</p>
             </div>
-            <button class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
+            <button onclick="doReprint(this)" class="px-4 py-2 border border-outline-variant rounded-lg text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
                 <span class="material-symbols-outlined" style="font-size:16px;">print</span> Reprint
             </button>
         </div>
@@ -379,4 +399,58 @@
     });
 
 </script>
+
+<div id="print-container" class="hidden">
+    <div id="print-header" class="text-center mb-8 pb-4 border-b-2 border-black">
+        <h1 class="text-3xl font-bold text-black">[Doctor Name Here]</h1>
+        <p class="text-sm mt-1 text-black">MBBS, MD - General Medicine</p>
+        <p class="text-sm text-black">Clinic Address, City, Phone: XXXXXXXXXX</p>
+    </div>
+    
+    <div class="grid grid-cols-2 gap-4 mb-6 text-black">
+        <div><strong>Name:</strong> <span id="print-name"></span></div>
+        <div><strong>Date:</strong> <span id="print-date"></span></div>
+        <div><strong>Age:</strong> <span id="print-age"></span></div>
+        <div><strong>Village:</strong> <span id="print-village"></span></div>
+    </div>
+    
+    <div class="mb-4 text-black">
+        <h3 class="font-bold border-b border-black inline-block mb-2">Prescription</h3>
+        <pre id="print-meds" class="font-mono text-sm whitespace-pre-wrap"></pre>
+    </div>
+    
+    <div class="mt-8 text-black">
+        <h3 class="font-bold border-b border-black inline-block mb-2">Remark</h3>
+        <p id="print-remark" class="font-mono text-sm whitespace-pre-wrap"></p>
+    </div>
+</div>
+
+<script>
+    function doReprint(btn) {
+        const card = btn.closest('.flex.items-center.justify-between');
+        const name = card.querySelector('h4').textContent.trim();
+        let medsHtml = card.querySelector('p.font-mono').innerHTML;
+        // replace <br> with newlines for <pre>
+        const meds = medsHtml.replace(/<br\s*\/?>/gi, '\n');
+        
+        let dateText = card.querySelector('p.text-xs').textContent.replace('Issued: ', '').trim();
+        
+        document.getElementById('print-name').textContent = name;
+        document.getElementById('print-date').textContent = dateText;
+        document.getElementById('print-age').textContent = "--";
+        document.getElementById('print-village').textContent = "--";
+        document.getElementById('print-meds').textContent = meds;
+        document.getElementById('print-remark').textContent = "Past Prescription Reprint";
+        
+        // Show container for printing
+        const container = document.getElementById('print-container');
+        container.classList.remove('hidden');
+        
+        window.print();
+        
+        // Hide container again
+        container.classList.add('hidden');
+    }
+</script>
+
 </body></html>
