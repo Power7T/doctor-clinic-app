@@ -443,5 +443,60 @@
             }
         });
     }
+
+    // Automatically set active navigation tab
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+        
+        // Fix mobile links if they are still #
+        const mobileNav = document.querySelector('nav.md\\:hidden, nav.fixed.bottom-0');
+        if (mobileNav) {
+            const links = mobileNav.querySelectorAll('a');
+            links.forEach(link => {
+                const text = link.innerText.trim();
+                if (text === 'Dashboard') link.setAttribute('href', 'dashboard.html');
+                if (text === 'Patients') link.setAttribute('href', 'patients.html');
+                if (text === 'New Entry') link.setAttribute('href', 'index.html');
+                if (text === 'Rx') link.setAttribute('href', 'prescriptions.html');
+            });
+        }
+
+        // Apply active classes
+        document.querySelectorAll('nav a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+            
+            const isActive = href === currentFile || (href === 'index.html' && currentFile === '');
+            const isDesktop = !link.closest('.md\\:hidden');
+            
+            if (isDesktop) {
+                if (isActive) {
+                    link.className = "flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg active:translate-x-1 transition-all";
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if(icon) icon.classList.add('icon-fill');
+                } else {
+                    link.className = "flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high active:translate-x-1 transition-all";
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if(icon) icon.classList.remove('icon-fill');
+                }
+            } else {
+                // Mobile
+                const textSpan = link.querySelector('span.text-\\[10px\\]') || link.querySelector('span:last-child');
+                const text = textSpan ? textSpan.innerText.trim() : "";
+                
+                let iconSpan = link.querySelector('.material-symbols-outlined');
+                const iconName = iconSpan ? iconSpan.innerText : "";
+                
+                if (isActive) {
+                    link.className = "flex flex-col items-center gap-1 text-primary p-2";
+                    link.innerHTML = `<div class="bg-secondary-container px-4 py-1 rounded-full mb-1"><span class="material-symbols-outlined icon-fill" style="font-size: 24px;">${iconName}</span></div><span class="text-[10px] font-bold">${text}</span>`;
+                } else {
+                    link.className = "flex flex-col items-center gap-1 text-on-surface-variant p-2";
+                    link.innerHTML = `<span class="material-symbols-outlined" style="font-size: 24px;">${iconName}</span><span class="text-[10px] font-bold">${text}</span>`;
+                }
+            }
+        });
+    });
+
 </script>
 </body></html>
